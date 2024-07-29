@@ -10,16 +10,16 @@ Please note that this demo is pretty rough. We use this to quickly check out new
 
 ## Getting started
 
-Run the following commands to sync the environment:
+Run the following commands to sync and activate the environment:
 
 ```bash
 rye sync
+source .venv/bin/activate
 ```
 
-Next, make sure you're logged in with the hugging face. You can use the following command to log in:
+Next, login in with the hugging face CLI using the following command:
 
 ```bash
-source .venv/bin/activate
 huggingface-cli login
 ```
 
@@ -28,3 +28,10 @@ After that, run the following command to start the app:
 ```bash
 chainlit run src/main.py
 ```
+
+## How does the sample work?
+
+This sample uses the Llama 3.1 8B Instruct model with a basic system prompt to implement a chat scenario.
+It doesn't have a conversation history other than the messages in the current chat session. I've left building history functionality up to you as an exercise. 
+
+This sample supports streaming the response back to the user using the appropriate tools from the `transformers` library.
