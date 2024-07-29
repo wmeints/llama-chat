@@ -1,11 +1,21 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextIteratorStreamer
 from threading import Thread
 
+# Make sure you have a license to use this model!
 model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 
 model = AutoModelForCausalLM.from_pretrained(model_id)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
-streamer = TextIteratorStreamer(tokenizer)
+
+# The streamer returns an iterator that yields tokens as they are generated.
+# This allows the model to generate tokens in the background while the client
+# processes the tokens that have already been generated.
+#
+# Note: we skip the prompt, as we already know what the user said.
+# Note: we skip special tokens, because we don't need to see them either.
+streamer = TextIteratorStreamer(
+    tokenizer, skip_prompt=True, decode_kwargs=dict(skip_special_tokens=True)
+)
 
 
 def generate_response(history):
