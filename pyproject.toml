@@ -1,0 +1,21 @@
+[project]
+name = "llama-chat"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Willem Meints", email = "1550763+wmeints@users.noreply.github.com" }
+]
+dependencies = [
+    "transformers>=4.43.3",
+    "accelerate>=0.33.0",
+    "bitsandbytes>=0.42.0",
+    "chainlit>=1.1.306",
+    "huggingface-hub[cli]>=0.24.2",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[tool.rye]
+managed = true
+virtual = true
+dev-dependencies = []
